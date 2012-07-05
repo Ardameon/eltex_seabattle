@@ -7,10 +7,10 @@ int read_coords(int *retx, int *rety, const int height, const int width)
 {
 	int cw = CWIDTH - 1; 		/* cell width stub */
 	int ch = CHEIGHT - 1; 		/* cell height stub */
-	int startx = 2; 		/* line start x */
-	int starty = 1; 		/* column start y */
-	int endx = cw * width - 2; 	/* line end x */
-	int endy = ch * height - 1; 	/* column end y */
+	int startx = 4; 		/* line start x */
+	int starty = 2; 		/* column start y */
+	int endx = cw * width; 		/* line end x */
+	int endy = ch * height; 	/* column end y */
 	int x = startx; 		/* current coordinate x */
 	int y = starty; 		/* current coordinate y */
 	int c; 				/* reads from keyboard */
