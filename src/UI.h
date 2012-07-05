@@ -5,7 +5,7 @@
 #include "Field.h"
 #include "Config.h"
 
-#define CWIDTH  4
+#define CWIDTH  5
 #define CHEIGHT 3
 
 int print_enemy(const struct Field *f, const int width, const int height);
