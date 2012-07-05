@@ -8,7 +8,7 @@ struct Cell {
 	int is_attacked;
 };
 
-struct Cell *cell_construct(struct Ship *ship, int is_attacked);
+struct Cell *cell_construct(struct Ship *ship);
 void cell_destruct(struct Cell *cell);
 
 #endif
