@@ -4,7 +4,6 @@
 #include "UI.h"
 
 static void initialize_curses(void);
-static void greeting(void);
 static struct Field *get_field(void);
 
 int main(int argc, char *argv[])

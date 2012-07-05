@@ -1,4 +1,5 @@
 #include "UI.h"
+#include <stdlib.h>
 
 int print_friendly(const struct Field *f, const int width, const int height)
 {
@@ -8,6 +9,8 @@ int print_friendly(const struct Field *f, const int width, const int height)
 	int ch = CHEIGHT;
 	int cw = CWIDTH;
 	WINDOW *cells[width][height];
+	/*WINDOW *cells = (struct WINDOW *)malloc(width * height * sizeof(struct WINDOW*));*/
+	/*[width][height];*/
 	curs_set(0);
 
 	for (j = 1; j < height; j++) {
@@ -29,7 +32,6 @@ int print_friendly(const struct Field *f, const int width, const int height)
 		}
 	}
 	mvprintw((ch - 1) * (i + 1), offset, "Your field");
-	getch();
 	curs_set(1);
 	return 0;
 }
