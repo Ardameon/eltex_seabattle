@@ -1,14 +1,42 @@
 #include "UI.h"
 
-int read_coords(int *x, int *y, const int height)
+int read_coords(int *retx, int *rety, const int height, const int width)
 {
-	int wheight = 3;
-	int wwidth = 30;
-	WINDOW *win = newwin(wheight, wwidth, (height - 2)* CHEIGHT, 1);
-	box(win, 0, 0);
-	mvwprintw(win, 0, 1, "Enter coordinates:");
-	wmove(win, 1, 1);
-	wrefresh(win);
-	getch();
+	int startx = 2;
+	int starty = 1;
+	int x = startx;
+	int y = starty;
+	int cw = CWIDTH - 1;
+	int ch = CHEIGHT - 1;
+	int c;
+	int endx = cw * width - 2;
+	int endy = ch * height - 1;
+
+	mvprintw(LINES - 2, 1, "Select cell to shoot.\n");
+	mvprintw(LINES - 1, 1, "Press F1 to exit.\n");
+
+	move(y, x);
+	refresh();
+
+	while ((c = getch()) != KEY_F(1)) {
+		switch(c) {
+		case KEY_LEFT:
+			x = (x <= startx) ? endx : x - cw;
+			break;
+		case KEY_RIGHT:
+			x = (x >= endx) ? startx : x + cw;
+			break;
+		case KEY_UP:
+			y = (y <= starty) ? endy : y - ch;
+			break;
+		case KEY_DOWN:
+			y = (y >= endy) ? starty : y + ch;
+			break;
+		default:
+			break;
+		}
+		move(y, x);
+		refresh();
+	}
 	return 0;
 }

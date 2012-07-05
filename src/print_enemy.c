@@ -16,6 +16,14 @@ int print_enemy(const struct Field *f, const int width, const int height)
 			cells[i][j] = cwin(ch, cw, i * (ch - 1), j * (cw - 1));
 		}
 	}
+	for (j = 1; j < height; j++) {
+		mvaddch(0, (cw - 1)* j, ACS_TTEE);
+		mvaddch((ch - 1)* height, (cw - 1)* j, ACS_BTEE);
+	}
+	for (i = 1; i < width; i++) {
+		mvaddch(i * (ch - 1), 0, ACS_LTEE);
+		mvaddch(i * (ch - 1), (cw - 1)* j, ACS_RTEE);
+	}
 	for (i = 1; i < height; i++) {
 		for (j = 1; j < width; j++) {
 			mvaddch((ch - 1)* i, (cw - 1)* j, ACS_PLUS);

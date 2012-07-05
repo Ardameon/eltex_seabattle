@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 	initialize_curses();
 	print_enemy((const struct Field *)f, 10, 10);
 	print_friendly((const struct Field *)f, 10, 10);
-	read_coords(&x, &y, 10);
+	read_coords(&x, &y, 10, 10);
 
 	endwin();
 	return 0;
