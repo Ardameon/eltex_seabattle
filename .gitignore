@@ -1,9 +1,9 @@
-src/*.o
+*.o
 Makefile
 Makefile.in
 src/Makefile
 src/Makefile.in
-src/.deps
+.deps
 aclocal.m4
 autom4te.cache
 compile
@@ -13,3 +13,4 @@ configure
 depcomp
 install-sh
 missing
+*~
