@@ -7,7 +7,7 @@ struct Ship {
 	char *description;
 };
 
-struct Ship *ship_construct(int health, int rank, const char *description);
+struct Ship *ship_construct(int rank, const char *description);
 void ship_destruct(struct Ship *ship);
 
 #endif
