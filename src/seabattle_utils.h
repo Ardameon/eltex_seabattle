@@ -1,5 +1,5 @@
-<<<<<<< HEAD
-
+#ifndef SEABATTLE_UTILS_H
+#define SEABATTLE_UTILS_H
 
 /* int create_player(struct Player*, struct Config*)
  * takes 2 arguments:
@@ -9,7 +9,6 @@
  * create_player() returns 0 on success. On error it returns a negative number
  * error code. Error codes is(will be) defined at 'error_codes.h'
  * */
-
 int create_player(struct Player *player, struct Config *config);
 
 /*
@@ -20,7 +19,6 @@ int create_player(struct Player *player, struct Config *config);
  * returns 0 on success. On error returns error codes defined
  * at 'error_codes.h'
  * */
-
 int create_players(struct Player *players, int count, struct Config *config);
 
 /* Function make a shot into a field with coordinates (x, y)
@@ -36,11 +34,7 @@ int shot (struct Player*, int x, int y);
  * Output data: Returns index of winner.
  * */
 int check_winner (struct Players*);
-=======
-#ifndef SEABATTLE_UTILS_H
-#define SEABATTLE_UTILS_H
 
 int * generate_ships_number_per_rank(int max_ship_size);
 
 #endif
->>>>>>> 7b583a23a3cfe617a7fcdc609610030499d7db21
