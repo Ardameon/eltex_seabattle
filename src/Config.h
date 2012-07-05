@@ -10,7 +10,7 @@ struct Config {
 };
 
 struct Config *config_construct(int field_width, int field_height,
-	int ships_count, int max_ships_size);
+	int ships_count, int max_ship_size);
 void config_destruct(struct Config *config);
 int * generate_ships_number_per_rank(int ships_count, int max_ships_size);
 

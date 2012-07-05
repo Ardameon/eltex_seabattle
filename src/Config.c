@@ -22,4 +22,3 @@ int *generate_ships_number_per_rank(int ships_count, int max_ships_size){
 		array[i] = max_ships_size - i;
 	return array;	
 }
-
