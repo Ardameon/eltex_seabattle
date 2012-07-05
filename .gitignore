@@ -1,0 +1,5 @@
+src/*.o
+Makefile
+Makefile.in
+src/Makefile
+src/Makefile.in
