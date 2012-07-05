@@ -1,5 +1,7 @@
 #include "UI.h"
 
+static void place_shots(void);
+
 int print_enemy(const struct Field *f, const int width, const int height)
 {
 	int i;
@@ -14,10 +16,21 @@ int print_enemy(const struct Field *f, const int width, const int height)
 			cells[i][j] = cwin(ch, cw, i * (ch - 1), j * (cw - 1));
 		}
 	}
-	mvwaddch(cells[3][3], 1, 2, '1');
-	wrefresh(cells[3][3]);
+	for (i = 1; i < height; i++) {
+		for (j = 1; j < width; j++) {
+			mvaddch((ch - 1)* i, (cw - 1)* j, ACS_PLUS);
+		}
+	}
+	place_shots();
 	mvprintw((ch - 1) * (i + 1), 1, "Enemy field");
 	getch();
 	curs_set(1);
 	return 0;
+}
+
+static void place_shots(void)
+{
+	mvaddch(1, 2, '1');
+	mvaddch(7, CHEIGHT * 3 + 1, '1');
+	refresh();
 }
