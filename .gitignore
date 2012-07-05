@@ -1,10 +1,14 @@
-src/*.o
+*.o
 Makefile
 Makefile.in
 src/Makefile
 src/Makefile.in
+<<<<<<< HEAD
 src/.deps
 src/seabattle
+=======
+.deps
+>>>>>>> fc7b2d55465d54bd38fa3bd7a7ec8e68116e353a
 aclocal.m4
 autom4te.cache
 compile
@@ -14,3 +18,4 @@ configure
 depcomp
 install-sh
 missing
+*~

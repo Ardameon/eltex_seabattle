@@ -22,8 +22,10 @@ static void initialize_curses(void)
 
 static void greeting(void)
 {
-	mvprintw(2, 2, "Seabattle");
+	char *msg = "Seabattle";
+
+	box(stdscr, 0, 0);
+	mvprintw(1, 1, msg);
 	refresh();
 	getch();
 }
-
