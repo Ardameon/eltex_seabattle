@@ -4,6 +4,7 @@ Makefile.in
 src/Makefile
 src/Makefile.in
 src/.deps
+src/seabattle
 aclocal.m4
 autom4te.cache
 compile
