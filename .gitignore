@@ -3,3 +3,12 @@ Makefile
 Makefile.in
 src/Makefile
 src/Makefile.in
+aclocal.m4
+autom4te.cache
+compile
+configure
+depcomp
+install-sh
+missing
+NEWS
+README
