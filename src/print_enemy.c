@@ -19,7 +19,7 @@ int print_enemy(const struct Field *f)
 	
 
 	print_field(startx, starty, f->width, f->height, cw, ch);
-	clear_field(f->width, f->height);
+	clear_field(f->height, f->width);
 
 	for (i = 0; i < f->height; i++) {
 		assert(f->field[i] != NULL);
@@ -27,9 +27,9 @@ int print_enemy(const struct Field *f)
 			int x = startx + cw * j + 2;
 			int y = starty + ch * i + 1;
 
-			if (f->field[i][j].ship != NULL) {
-				mvaddch(y, x, PLACEDSHIP);
-			}
+			/*if (f->field[i][j].ship != NULL) {*/
+				/*mvaddch(y, x, PLACEDSHIP);*/
+			/*}*/
 			if (f->field[i][j].is_attacked == 1) {
 				mvaddch(y, x, WASATTACKED);
 			}
