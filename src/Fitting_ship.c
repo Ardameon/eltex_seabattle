@@ -25,27 +25,35 @@ int add_ship_on_field(struct Field *map, struct Fitting_ship *fitt_ship){
 }
 
 int check_fitting_cell(struct Field *map, int left, int top){
-	if (map->field[top][left] != 0)
+	if ((left >= 0) && (left < map->width) &&
+			(top >= 0) && (top < map->height)){
+		if (map->field[top][left] == NULL) 
+			return 1;
+		else
+			return 0;
+	}
+	else
+		return 1;
+}
+
+int check_fitting_cells(struct Field *map, int left, int top){
+	if (check_fitting_cell(map, left, top) == 0)
 		return 0;
-	if ((left != 0) && (map->field[top][left - 1] != NULL))
+	if (check_fitting_cell(map, left - 1, top - 1) == 0)
 		return 0;
-	if ((left != map->width - 1) && (map->field[top][left + 1] != NULL))
+	if (check_fitting_cell(map, left, top-1) == 0)
 		return 0;
-	if ((top != 0) && (map->field[top - 1][left] != NULL))
+	if (check_fitting_cell(map, left + 1, top - 1) == 0)
 		return 0;
-	if ((top != map->height - 1) && (map->field[top + 1][left] != NULL))
+	if (check_fitting_cell(map, left + 1, top) == 0)
 		return 0;
-	if ((top != 0) && (left != 0) && 
-		(map->field[top - 1][left - 1] != NULL))
+	if (check_fitting_cell(map, left + 1, top + 1) == 0)
 		return 0;
-	if ((top != map->height - 1) && (left != 0) && 
-		(map->field[top + 1][left - 1] != NULL))
+	if (check_fitting_cell(map, left, top + 1) == 0)
 		return 0;
-	if ((top != 0) && (left != map->width - 1) && 
-		(map->field[top - 1][left + 1] != NULL))
+	if (check_fitting_cell(map, left - 1, top + 1) == 0)
 		return 0;
-	if ((top != map->height - 1) && (left != map->width - 1) && 
-		(map->field[top + 1][left + 1] != NULL))
+	if (check_fitting_cell(map, left - 1, top) == 0)
 		return 0;
 	return 1;
 }
@@ -66,7 +74,7 @@ int fitting_ship(struct Field *map, struct Fitting_ship *fitt_ship){
 		if (fitt_ship->left + fitt_ship->length < map->width){	
 			for (i = fitt_ship->left; i < fitt_ship->left + 
 					fitt_ship->length; i++){
-				if (check_fitting_cell(map, i, fitt_ship->top) == 0)
+				if (check_fitting_cells(map, i, fitt_ship->top) == 0)
 					fitt_ship->check_fitting_permit = 0;
 			}
 		}
@@ -77,7 +85,7 @@ int fitting_ship(struct Field *map, struct Fitting_ship *fitt_ship){
 		if (fitt_ship->top + fitt_ship->length < map->height){
 			for (i = fitt_ship->top; i < fitt_ship->top + 
 					fitt_ship->length; i++){
-				if (check_fitting_cell(map, fitt_ship->left, i) == 0)
+				if (check_fitting_cells(map, fitt_ship->left, i) == 0)
 					fitt_ship->check_fitting_permit = 0;
 			}
 		}
