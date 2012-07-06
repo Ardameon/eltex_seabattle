@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include "seabattle_utils.h"
 #include "Fitting_ship.h"
@@ -11,7 +12,7 @@ int emplace_ships(struct Field *map, struct Config *config_game){
 			do {
 				fitt_ship->top = rand() % map->height;
 				fitt_ship->left = rand() % map->width;
-				if (rand() % 2)
+				if ((rand() & 0x01) == 1)
 					fitt_ship->orient = horizontal;
 				else
 					fitt_ship->orient = vertical;
