@@ -4,7 +4,11 @@
 
 struct Ship *ship_construct(int rank, const char *description) 
 {
-	struct Ship * ship = (struct Ship *)malloc(sizeof(struct Ship));
+	struct Ship * ship = NULL;
+	ship = malloc(sizeof(*ship));
+	
+	if (ship == NULL) return NULL;
+
 	ship->health = ship->rank = rank;
 	ship->description = (char *)
 		malloc(sizeof(char) * (strlen(description) + 1));
