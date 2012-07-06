@@ -16,6 +16,7 @@ void Fitting_ship_destruct(struct Fitting_ship *fitt_ship);
 
 int add_ship_on_field(struct Field *map, struct Fitting_ship *fitt_ship);
 int check_fitting_cell(struct Field *map, int left, int top);
+int check_fitting_cells(struct Field *map, int left, int top);
 int rotation(struct Field *map, struct Fitting_ship *fitt_ship);
 int fitting_ship(struct Field *map, struct Fitting_ship *fitt_ship);
 #endif
