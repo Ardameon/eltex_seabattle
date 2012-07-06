@@ -44,6 +44,7 @@ int generate_ships_number_per_rank(struct Config *config)
 				count_remain_ship;
 		count_remain_ship -= config->ships_number_per_rank[i]; 
 	}
+	config->ships_number_per_rank[0] += count_remain_ship;
 
 	return 0;
 }
