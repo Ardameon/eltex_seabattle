@@ -1,48 +1,23 @@
 #include <stdlib.h>
-
 #include "Field.h"
 
-struct Field *field_construct(int width, int height)
-{
-	struct Field *field;
-	int i;
-
-	if ((field = malloc(sizeof(*field))) == NULL)
-		return NULL;
-
-	field.width = width;
-	field.height = height;
-	
-	if ((field.field = malloc(height * sizeof(*field.field))) == NULL) {
-		free(field);
-
-		return NULL;
+struct Field *field_construct(struct Config *conf){
+	struct Field * ptr = malloc (sizeof(struct Field));
+	int i,j;
+	ptr->width = conf->field_width;
+	ptr->height = conf->field_height;
+	ptr->field = malloc (ptr->height * sizeof(struct Cell **));
+	for (i = 0; i < ptr->height; i++){
+		ptr->field[i] = malloc (ptr->width * sizeof(struct Cell *)); 
+		for (j = 0; j < ptr->width; j++)
+			ptr->field[i][j] = NULL;
 	}
-
-	for (i = 0; i < height; ++i) {
-		field.field[i] = calloc(width, sizeof(**field.field));
-
-		if (field.field[i] == NULL) {
-			while (--i >= 0)
-				free(field.field[i]);
-
-			free(field.field);
-			free(field);
-
-			return NULL;
-		}
-	}
-
-	return field;
+	return ptr;
 }
 
-void field_destruct(struct Field *field)
-{
+void field_destruct(struct Field *field){
 	int i;
-
-	for (i = 0; i < field.height; ++i)
-		free(field.field[i]);
-
-	free(field.field);
-	free(field);
+	for (i = 0; i < field->height; i++)
+		free(field->field[i]);
+	free(field->field);
 }
