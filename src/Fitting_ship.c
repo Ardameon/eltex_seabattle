@@ -12,7 +12,8 @@ struct Fitting_ship *fitting_ship_construct(struct Field *map, int rank){
 
 int add_ship_on_field(struct Field *map, struct Fitting_ship *fitt_ship){
 	int i;
-	struct Ship *ship = ship_construct(fitt_ship->length, "TEST NAME");
+	struct Ship *ship = ship_construct(fitt_ship->length, "TEST NAME", 
+			fitt_ship->top, fitt_ship->left, fitt_ship->orient);
 	if (fitt_ship->orient == horizontal)
 		for (i = fitt_ship->left; i < fitt_ship->left + 
 				fitt_ship->length; i++)
