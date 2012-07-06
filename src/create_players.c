@@ -9,8 +9,8 @@
 int create_players(struct Player *players, int count, struct Config *config)
 {
 
-	int i = 0;
-	for(i; i < config->ships_count; i++) {
+	int i;
+	for(i = 0; i < config->ships_count; i++) {
 		create_player(players + i, config);
 	}
 

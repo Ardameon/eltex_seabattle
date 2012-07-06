@@ -19,19 +19,19 @@ int create_player(struct Player *player, struct Config *config)
 	struct Field* field;
 	char* name;
 	name = (char*) malloc(sizeof(char) * 128);
-	if(!fgets(name, 128, stdin)) {
+	if (!fgets(name, 128, stdin)) {
 		free(name);
 		return -1;
 	}
 
-	if((field = field_construct(config->field_width,
-						config->field_height) == NULL) {
+	if ((field = field_construct(config->field_width,
+		config->field_height)) == NULL) {
 	/*if field_construct() returns an error*/
 		free(name);
 		return -2;
 	}
 
-	if((player_construct(field, "unnamed", config->ships_count) == NULL) {
+	if (player_construct(field, "unnamed", config->ships_count) == NULL) {
 	/*if player_construct() returns an error*/
 		ree(name);
 		field_destruct(field);
