@@ -3,6 +3,9 @@ Makefile
 Makefile.in
 src/Makefile
 src/Makefile.in
+src/Makefile.am
+Makefile.am
+.gitignore
 src/.deps
 src/seabattle
 aclocal.m4
