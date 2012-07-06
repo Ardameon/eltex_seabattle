@@ -16,7 +16,6 @@ int read_coords(int *retx, int *rety, const int height, const int width)
 	int x = startx; 		/* current coordinate x */
 	int y = starty; 		/* current coordinate y */
 	int c; 				/* reads from keyboard */
-	FILE *fp = fopen("sea.log", "w+");
 
 	mvprintw(LINES - 1, 1, "Press Enter to shoot; F1 to exit.\n");
 
@@ -42,8 +41,6 @@ int read_coords(int *retx, int *rety, const int height, const int width)
 				 x_to_col(x, startx, cw), y_to_line(y, starty, ch));
 			*rety = (x - startx) / cw;
 			*retx = (y - starty) / ch;
-			fprintf(fp, "[read_coords] coordinates: %d %d\n", *retx,*rety);
-			fclose(fp);
 			return 0;
 			break;
 		default:

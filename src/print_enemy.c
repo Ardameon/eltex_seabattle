@@ -27,11 +27,11 @@ int print_enemy(const struct Field *f)
 			int x = startx + cw * j + 2;
 			int y = starty + ch * i + 1;
 
-			if (f->field[i][j].ship == f->dummy_ship) {
-				mvaddch(y, x, 'n');
-			}
 			if (f->field[i][j].is_attacked == 1) {
 				mvaddch(y, x, WASATTACKED);
+			}
+			if (f->field[i][j].ship == f->dummy_ship) {
+				mvaddch(y, x, 'n');
 			}
 		}
 	}
