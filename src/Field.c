@@ -13,11 +13,19 @@ struct Field *field_construct(struct Config *config)
 	if ((field = malloc(sizeof(*field))) == NULL)
 		return NULL;
 
+	if ((field->dummy_ship = malloc(1)) == NULL) {
+		free(field);
+
+		return NULL;
+	}
+
 	field->width = config->field_width;
 	field->height = config->field_height;
 	field->field = malloc(field->height * sizeof(*field->field));
 
 	if (field->field == NULL) {
+		free(field->dummy_ship);
+		free(field->field);
 		free(field);
 
 		return NULL;
@@ -30,6 +38,7 @@ struct Field *field_construct(struct Config *config)
 			while (--i >= 0)
 				free(field->field[i]);
 
+			free(field->dummy_ship);
 			free(field->field);
 
 			free(field);
@@ -48,6 +57,7 @@ void field_destruct(struct Field *field)
 	for (i = 0; i < field->height; ++i)
 		free(field->field[i]);
 
+	free(field->dummy_ship);
 	free(field->field);
 
 	free(field);

@@ -11,5 +11,6 @@ int shot(struct Player *player, int x, int y);
 int check_winner(struct Player **player);
 int finalize_field(struct Player *player);
 int run_game(struct Player **players);
+int print_fields(struct Player **players, int friendly_player_index);
 
 #endif

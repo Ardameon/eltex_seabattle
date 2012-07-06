@@ -1,4 +1,5 @@
 #include "seabattle_utils.h"
+#include "seabattle_errors.h"
 #include "Player.h"
 #include "Field.h"
 #include "UI.h"
@@ -15,8 +16,9 @@ int run_game(struct Player **players)
 	while (winner_index == -1) {
 		current_player = players[current_player_index];
 		current_player_field = current_player->field;
-		print_friendly(current_player_field);
-		print_enemy(current_player_field);
+		/*print_friendly(current_player_field);*/
+		/*print_enemy(current_player_field);*/
+		print_fields(players, current_player_index);
 		read_coords(&shot_x, &shot_y, current_player_field->height,
 			current_player_field->width);
 		shot_val = shot(current_player, shot_x, shot_y);
@@ -29,11 +31,34 @@ int run_game(struct Player **players)
 			continue;
 		}
 
-		print_friendly(current_player_field);
-		print_enemy(current_player_field);
+		/*print_friendly(current_player_field);*/
+		/*print_enemy(current_player_field);*/
+		print_fields(players, current_player_index);
 	}
 
 	print_winner(players[winner_index]);
 
-	return 0;
+	return SUCCESS;
+}
+
+int print_fields(struct Player **players, int friendly_player_index)
+{
+	int err_code;
+	int i;
+
+	err_code = print_friendly(players[friendly_player_index]->field);
+
+	if (err_code == SUCCESS)
+		return err_code;
+
+	for (i = 0; i < 2; ++i) {
+		if (i != friendly_player_index) {
+			err_code = print_enemy(players[i]->field);
+
+			if (err_code != SUCCESS)
+				return err_code;
+		}
+	}
+
+	return SUCCESS;
 }
