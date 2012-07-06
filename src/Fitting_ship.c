@@ -93,3 +93,4 @@ int fitting_ship(const struct Field *map, struct Fitting_ship *fitt_ship){
 			fitt_ship->check_fitting_permit = 0;
 	return fitt_ship->check_fitting_permit;
 }
+//test comment
