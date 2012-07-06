@@ -8,7 +8,7 @@ int emplace_ships(struct Field *map, struct Config *config_game);
 int create_player(struct Player **player, struct Config *config);
 int create_players(struct Player **players, int count, struct Config *config);
 int shot(struct Player *player, int x, int y);
-int check_winner(struct Player *player);
+int check_winner(struct Player **player);
 int finalize_field(struct Player *player);
 int run_game(struct Player **players);
 

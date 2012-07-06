@@ -4,6 +4,7 @@
 #include <ncurses.h>
 #include "Field.h"
 #include "Config.h"
+#include "Player.h"
 
 #define CWIDTH  5
 #define CHEIGHT 3
