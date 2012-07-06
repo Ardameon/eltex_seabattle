@@ -19,7 +19,8 @@ int run_game(struct Player **players)
 		print_fields(players, current_player_index);
 		read_coords(&shot_x, &shot_y, current_player_field->height,
 			current_player_field->width);
-		shot_val = shot(current_player, shot_x, shot_y);
+		shot_val = shot(players[(current_player_index + 1) % 2],
+			shot_x, shot_y);
 		
 		if (shot_val == 0) {
 			current_player_index = (current_player_index + 1) % 2;
