@@ -1,4 +1,4 @@
-AC_INIT([seabattle], [0.1])
+AC_INIT([seabattle], [0.3])
 AM_INIT_AUTOMAKE([-Wall -Werror])
 
 AC_CONFIG_SRCDIR([src/main.c])

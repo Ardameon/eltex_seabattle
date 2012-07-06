@@ -31,7 +31,9 @@ int print_enemy(const struct Field *f)
 				mvaddch(y, x, WASATTACKED);
 			}
 			if (f->field[i][j].ship == f->dummy_ship) {
+				mvaddch(y, x - 1, 'd');
 				mvaddch(y, x, 'n');
+				mvaddch(y, x + 1, 'o');
 			}
 		}
 	}
