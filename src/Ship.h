@@ -1,7 +1,7 @@
 #ifndef SHIP_H
 #define SHIP_H
 
-enum orientation { horizontal, vertical };
+enum orientation { HORIZONTAL, VERTICAL };
 
 struct Ship {
 	int health;
