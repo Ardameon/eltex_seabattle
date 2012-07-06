@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include "Player.h"
+#include "UI.h"
 #include "seabattle_utils.h"
 #include "seabattle_errors.h"
 
@@ -17,7 +18,7 @@
 
 int create_player(struct Player **player, struct Config *config)
 {
-	char* name;
+	char *name;
 
 	if ((name = input_name()) == NULL)
 		return ERR_IO;
@@ -29,8 +30,8 @@ int create_player(struct Player **player, struct Config *config)
 		return ERR_PLAYER_CONSTRUCT;
 	}
 
-	if (!emplace_ships(player->field, config)) {
-		player_destruct(player);
+	if (!emplace_ships((*player)->field, config)) {
+		player_destruct(*player);
 		return ERR_EMPLACE;
 	}
 
