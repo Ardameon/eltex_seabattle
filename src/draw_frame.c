@@ -4,5 +4,5 @@
 
 int draw_frame(struct Field *field, int x, int y)
 {
-	return SECCESS;
+	return SUCCESS;
 }
