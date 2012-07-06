@@ -18,13 +18,9 @@ int create_player(struct Player **player, struct Config *config)
 {
 	char* name;
 	
-	name = malloc(sizeof(*name) * 128);
-	
-	if (!fgets(name, 128, stdin)) {
-		free(name);
+	if ((name = input_name()) == NULL)
 		return -1;
-	}
-
+	
 	if ((*player = player_construct(config, name,
 		config->ships_count)) == NULL) {
 	/*if player_construct() returns an error*/
