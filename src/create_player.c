@@ -31,7 +31,7 @@ int create_player(struct Player **player, struct Config *config)
 		return ERR_PLAYER_CONSTRUCT;
 	}
 
-	if (!emplace_ships((*player)->field, config)) {
+	if (emplace_ships((*player)->field, config)) {
 		player_destruct(*player);
 		return ERR_EMPLACE;
 	}
