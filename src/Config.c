@@ -16,6 +16,9 @@ struct Config *config_construct(int field_width, int field_height,
 	config->ships_number_per_rank =
 		generate_ships_number_per_rank(max_ships_size);
 
+	if (config->ships_number_per_rank == NULL)
+		return NULL;
+
 	return config;
 }
 
@@ -38,7 +41,8 @@ int *generate_ships_number_per_rank(int max_ships_size)
 	int *array;
 	int i;
 		
-	array = malloc(max_ships_size * sizeof(*array));
+	if ((array = malloc(max_ships_size * sizeof(*array))) == NULL)
+		return NULL;
 
 	for (i = 0; i < max_ships_size; ++i)
 		array[i] = max_ships_size - i;

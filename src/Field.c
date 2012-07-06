@@ -7,6 +7,9 @@ struct Field *field_construct(struct Config *config)
 	struct Field *field;
 	int i;
 
+	if (config == NULL)
+		return NULL;
+
 	if ((field = malloc(sizeof(*field))) == NULL)
 		return NULL;
 

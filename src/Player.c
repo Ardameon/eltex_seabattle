@@ -8,6 +8,9 @@ struct Player *player_construct(struct Config *config, const char *name,
 {
 	struct Player *player;
 
+	if (config == NULL || name == NULL)
+		return NULL;
+
 	if ((player = malloc(sizeof(*player))) == NULL)
 		return NULL;
 
