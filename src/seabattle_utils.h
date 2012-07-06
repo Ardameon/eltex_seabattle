@@ -9,5 +9,6 @@ int create_player(struct Player *player, struct Config *config);
 int create_players(struct Player *players, int count, struct Config *config);
 int shot (struct Player*, int x, int y);
 int check_winner (struct Player*);
+int finalize_field(struct Player* gamer);
 
 #endif
