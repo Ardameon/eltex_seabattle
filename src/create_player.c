@@ -1,8 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "UI.h"
 #include "Player.h"
+#include "UI.h"
 #include "seabattle_utils.h"
+#include "seabattle_errors.h"
 
 
 /* create_player(struct Player*, struct Config*)
@@ -16,20 +19,21 @@
 
 int create_player(struct Player **player, struct Config *config)
 {
-	char* name;
-	
-	name = malloc(sizeof(*name) * 128);
-	
-	if (!fgets(name, 128, stdin)) {
-		free(name);
-		return -1;
-	}
+	char *name;
+
+	if ((name = input_name()) == NULL)
+		return ERR_IO;
 
 	if ((*player = player_construct(config, name,
 		config->ships_count)) == NULL) {
 	/*if player_construct() returns an error*/
 		free(name);
-		return -3;
+		return ERR_PLAYER_CONSTRUCT;
+	}
+
+	if (!emplace_ships((*player)->field, config)) {
+		player_destruct(*player);
+		return ERR_EMPLACE;
 	}
 
 	return 0;

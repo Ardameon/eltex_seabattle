@@ -7,12 +7,15 @@ struct Field *field_construct(struct Config *config)
 	struct Field *field;
 	int i;
 
+	if (config == NULL)
+		return NULL;
+
 	if ((field = malloc(sizeof(*field))) == NULL)
 		return NULL;
 
-	field->width = conf->field_width;
-	field->height = conf->field_height;
-	field->field = malloc(field->height * sizeof(*filed->field));
+	field->width = config->field_width;
+	field->height = config->field_height;
+	field->field = malloc(field->height * sizeof(*field->field));
 
 	if (field->field == NULL) {
 		free(field);

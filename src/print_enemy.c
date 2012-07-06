@@ -20,7 +20,7 @@ int print_enemy(const struct Field *f)
 	for (i = 0; i < f->height; i++) {
 		assert(f->field[i] != NULL);
 		for (j = 0; j < f->width; j++) {
-			if (f->field[i][j] != NULL) {
+			if (f->field[i * f->width + j] != NULL) {
 				int x = startx + cw * j + 2;
 				int y = starty + ch * i + 1;
 

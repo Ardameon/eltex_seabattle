@@ -16,18 +16,18 @@ int add_ship_on_field(struct Field *map, struct Fitting_ship *fitt_ship){
 	if (fitt_ship->orient == horizontal)
 		for (i = fitt_ship->left; i < fitt_ship->left + 
 				fitt_ship->length; i++)
-			map->field[fitt_ship->top][i] = cell_construct(ship);
+			map->field[fitt_ship->top][i].ship = ship;
 	else
 		for (i = fitt_ship->top; i < fitt_ship->top + 
 				fitt_ship->length; i++)
-			map->field[i][fitt_ship->left] = cell_construct(ship);
+			map->field[i][fitt_ship->left].ship = ship;
 	return 0;
 }
 
 int check_fitting_cell(const struct Field *map, int left, int top){
 	if ((left >= 0) && (left < map->width) &&
 			(top >= 0) && (top < map->height)){
-		if (map->field[top][left] == NULL) 
+		if (map->field[top][left].ship == NULL) 
 			return 1;
 		else
 			return 0;

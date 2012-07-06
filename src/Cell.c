@@ -18,6 +18,7 @@ struct Cell *cell_construct(struct Ship *ship)
 
 	cell->ship = ship;
 	cell->is_attacked = 0;
+	
 	return cell;
 }
 
