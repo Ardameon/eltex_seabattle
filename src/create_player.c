@@ -3,6 +3,7 @@
 
 #include "UI.h"
 #include "Player.h"
+#include "UI.h"
 #include "seabattle_utils.h"
 #include "seabattle_errors.h"
 
@@ -18,7 +19,7 @@
 
 int create_player(struct Player **player, struct Config *config)
 {
-	char* name;
+	char *name;
 
 	if ((name = input_name()) == NULL)
 		return ERR_IO;
