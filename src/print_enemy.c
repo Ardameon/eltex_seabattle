@@ -3,7 +3,7 @@
 
 static void clear_field(int height, int width);
 
-int print_enemy(const struct Field *f)
+int print_enemy(const struct Field *f, struct Player *p)
 {
 	int i;
 	int j;
@@ -38,7 +38,7 @@ int print_enemy(const struct Field *f)
 		}
 	}
 
-	mvprintw(ch * f->height + starty + 1, startx, "Enemy field");
+	mvprintw(ch * f->height + starty + 1, startx, "%s field", p->name);
 	return 0;
 }
 
