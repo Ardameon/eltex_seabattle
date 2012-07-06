@@ -25,7 +25,7 @@ int create_player(struct Player **player, struct Config *config)
 		return -1;
 	}
 
-	if ((*player = player_construct(config, "unnamed",
+	if ((*player = player_construct(config, name,
 		config->ships_count)) == NULL) {
 	/*if player_construct() returns an error*/
 		free(name);
