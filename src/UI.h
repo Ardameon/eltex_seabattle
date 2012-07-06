@@ -12,7 +12,5 @@ int print_field(int sx, int sy, int w, int h, int cw, int ch);
 int print_enemy(const struct Field *f);
 int print_friendly(const struct Field *f);
 int read_coords(int *x, int *y, const int height, const int width);
-WINDOW *cwin(int height, int width, int starty, int startx);
-int draw_box(WINDOW *win, int h, int w, int sy, int sx);
 
 #endif

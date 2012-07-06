@@ -1,5 +1,8 @@
 #include "UI.h"
 
+static void draw_box(int h, int w, int sy, int sx);
+static WINDOW *cwin(int height, int width, int starty, int startx);
+
 int print_field(int startx, int starty, int width, int height, int cw, int ch)
 {
 	int i;
@@ -42,5 +45,23 @@ int print_field(int startx, int starty, int width, int height, int cw, int ch)
 			mvaddch(y, x, ACS_PLUS);
 		}
 	}
+	refresh();
 	return 0;
+}
+
+static void draw_box(int h, int w, int sy, int sx)
+{
+	h -= 1;
+	w -= 1;
+	mvhline(sy, sx + 1, ACS_HLINE, w - 1);
+	mvhline(sy + h, sx + 1, ACS_HLINE, w - 1);
+	mvvline(sy + 1, sx, ACS_VLINE, h - 1);
+	mvvline(sy + 1, sx + w, ACS_VLINE, h - 1);
+}
+
+static WINDOW *cwin(int height, int width, int starty, int startx)
+{
+	WINDOW *win = newwin(height, width, starty, startx);
+	draw_box(height, width, starty, startx);
+	return win;
 }

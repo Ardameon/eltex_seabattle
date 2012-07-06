@@ -28,7 +28,7 @@ static struct Field *get_field(void)
 	int i,j;
 	ptr->width = 10;
 	ptr->height = 10;
-	ptr->field = (struct Cell ***)malloc(ptr->height * sizeof(struct Cell **));
+	ptr->field = malloc(ptr->height * sizeof(struct Cell **));
 	for (i = 0; i < ptr->height; i++){
 		ptr->field[i] = (struct Cell **)malloc(ptr->width * sizeof(struct Cell *)); 
 		for (j = 0; j < ptr->width; j++)
