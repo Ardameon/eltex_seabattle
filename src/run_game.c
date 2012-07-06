@@ -10,6 +10,7 @@ int run_game(struct Player **players)
 	int current_player_index = 0;
 	int shot_x, shot_y;
 	int destroyed_ship_left, destroyed_ship_top;
+	enum orientation orient;
 	int winner_index = -1;
 	struct Player *current_player;
 	struct Field *current_player_field;
@@ -21,13 +22,16 @@ int run_game(struct Player **players)
 		read_coords(&shot_x, &shot_y, current_player_field->height,
 			current_player_field->width);
 		shot_val = shot(players[(current_player_index + 1) % 2],
-			shot_x, shot_y);
+			shot_x, shot_y,
+			&destroyed_ship_left, &destroyed_ship_top, &orient);
 		
 		if (shot_val == SHOT_MISSED) {
 			current_player_index = (current_player_index + 1) % 2;
 		} else if (shot_val == SHOT_SHIP_DESTROYED) {
 			winner_index = check_winner(players);
-			draw_frame(current_player->field, destroyed_ship_left, destroyed_ship_top);
+			draw_frame(current_player->field,
+				destroyed_ship_left, destroyed_ship_top,
+				orient);
 		}
 	}
 
