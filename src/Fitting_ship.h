@@ -1,8 +1,8 @@
 #ifndef FITTING_SHIP_H
 #define FITTING_SHIP_H
-#include "Field.h"
 
-enum orientation { horizontal, vertical };
+#include "Ship.h"
+#include "Field.h"
 
 struct Fitting_ship{
 	int top, left;

@@ -5,15 +5,16 @@ struct Fitting_ship *fitting_ship_construct(struct Field *map, int rank){
 	struct Fitting_ship *ptr = malloc(sizeof(struct Fitting_ship));
 	ptr->left = ptr->top = 0;
 	ptr->length = rank;
-	ptr->orient = horizontal;
+	ptr->orient = HORIZONTAL;
 	fitting_ship(map, ptr);
 	return ptr;
 }
 
 int add_ship_on_field(struct Field *map, struct Fitting_ship *fitt_ship){
 	int i;
-	struct Ship *ship = ship_construct(fitt_ship->length, "TEST NAME");
-	if (fitt_ship->orient == horizontal)
+	struct Ship *ship = ship_construct(fitt_ship->length, "TEST NAME", 
+			fitt_ship->top, fitt_ship->left, fitt_ship->orient);
+	if (fitt_ship->orient == HORIZONTAL)
 		for (i = fitt_ship->left; i < fitt_ship->left + 
 				fitt_ship->length; i++)
 			map->field[fitt_ship->top][i].ship = ship;
@@ -59,10 +60,10 @@ int check_fitting_cells(const struct Field *map, int left, int top){
 }
 
 int rotation(struct Field *map, struct Fitting_ship *fitt_ship){
-	if (fitt_ship->orient == horizontal)
-		fitt_ship->orient = vertical;
+	if (fitt_ship->orient == HORIZONTAL)
+		fitt_ship->orient = VERTICAL;
 	else
-		fitt_ship->orient = horizontal;
+		fitt_ship->orient = HORIZONTAL;
 	fitting_ship(map, fitt_ship);
 	return 0;
 }
@@ -70,7 +71,7 @@ int rotation(struct Field *map, struct Fitting_ship *fitt_ship){
 int fitting_ship(const struct Field *map, struct Fitting_ship *fitt_ship){
 	int i;
 	fitt_ship->check_fitting_permit = 1;
-	if (fitt_ship->orient == horizontal){
+	if (fitt_ship->orient == HORIZONTAL){
 		if (fitt_ship->left + fitt_ship->length <= map->width){	
 			for (i = fitt_ship->left; i < fitt_ship->left + 
 					fitt_ship->length; i++){

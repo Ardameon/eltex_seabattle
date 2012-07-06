@@ -3,7 +3,7 @@
 
 static void clear_field(int height, int width);
 
-int print_friendly(const struct Field *f)
+int print_friendly(const struct Field *f, struct Player *p)
 {
 	const int startx = f->width * CWIDTH + 10;
 	const int starty = 1;
@@ -35,7 +35,7 @@ int print_friendly(const struct Field *f)
 		}
 	}
 
-	mvprintw(ch * f->height + starty + 1, startx, "Your field");
+	mvprintw(ch * f->height + starty + 1, startx, "%s field", p->name);
 	return 0;
 }
 

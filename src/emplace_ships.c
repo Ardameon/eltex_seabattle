@@ -14,9 +14,9 @@ int emplace_ships(struct Field *map, struct Config *config_game){
 				fitt_ship->top = rand() % map->height;
 				fitt_ship->left = rand() % map->width;
 				if ((rand() & 0x01) == 1)
-					fitt_ship->orient = horizontal;
+					fitt_ship->orient = HORIZONTAL;
 				else
-					fitt_ship->orient = vertical;
+					fitt_ship->orient = VERTICAL;
 			} while (!fitting_ship(map, fitt_ship));
 		add_ship_on_field(map, fitt_ship);
 		free(fitt_ship);
