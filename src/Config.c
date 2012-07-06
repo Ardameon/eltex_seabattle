@@ -14,7 +14,7 @@ struct Config *config_construct(int field_width, int field_height,
 	config->ships_count = ships_count;
 	config->max_ship_size = max_ships_size;
 	config->ships_number_per_rank =
-		generate_ships_number_per_rank(ships_count, max_ships_size);
+		generate_ships_number_per_rank(max_ships_size);
 
 	return config;
 }
@@ -26,7 +26,14 @@ void config_destruct(struct Config *config)
 	free(config);
 }
 
-int *generate_ships_number_per_rank(int ships_count, int max_ships_size)
+/*
+ * Generate array contains number of ships each rank
+ * Parameters:
+ * 	max_ships_size - max rank of ship
+ * Return value:
+ * 	generated array
+ */
+int *generate_ships_number_per_rank(int max_ships_size)
 {
 	int *array;
 	int i;
