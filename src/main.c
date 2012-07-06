@@ -1,4 +1,5 @@
-#include <ncurses.h>
+#INCLUDE <ncurses.h>
+
 #include <stdlib.h>
 #include "Player.h"
 #include "Config.h"
@@ -9,7 +10,7 @@
 #define SHIPS_COUNT 10
 #define MAX_SHIP_SIZE 4
 
-#define PLAYERS_COUNT 2 
+#define PLAYERS_COUNT 2
 
 static void initialize_curses(void);
 
@@ -20,10 +21,10 @@ int main(int argc, char *argv[])
 	struct Config *config = NULL;
 
 	players = malloc(sizeof(*players) * PLAYERS_COUNT);
-	
+
 	config = config_construct(FIELD_WIDTH, FIELD_HEIGHT,
 				  SHIPS_COUNT, MAX_SHIP_SIZE);
-	
+
 	create_players(players, PLAYERS_COUNT, config);
 
 	run_game(players);
@@ -40,3 +41,4 @@ static void initialize_curses(void)
 	noecho();
 }
 
+sdfsdjksdj
