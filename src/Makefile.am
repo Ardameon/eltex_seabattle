@@ -24,7 +24,8 @@ seabattle_SOURCES = main.c \
 		    Ship.c \
 		    Ship.h \
 		    shot.c \
-		    UI.h
+		    UI.h \
+		    input_name.c
 seabattle_LDFLAGS = -lncurses
 
 AM_CFLAGS = -Wall -pedantic

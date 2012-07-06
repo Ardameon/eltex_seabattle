@@ -24,7 +24,7 @@ int run_game(struct Player **players)
 		if (shot_val == 0) {
 			current_player_index = (current_player_index + 1) % 2;
 		} else if (shot_val == 1) {
-			winner_index = check_winner(current_player);
+			winner_index = check_winner(players);
 		} else { 
 			continue;
 		}
