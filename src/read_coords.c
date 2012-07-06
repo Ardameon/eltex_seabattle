@@ -45,7 +45,7 @@ int read_coords(int *retx, int *rety, const int height, const int width)
 		refresh();
 	}
 	*retx = x - 'a';
-	*rety = y - 1;
+	*rety = y;
 	return 0;
 }
 
@@ -56,5 +56,5 @@ static char x_to_col(int x, int startx, int w)
 
 static int y_to_line(int y, int starty, int h)
 {
-	return 1 + (y - starty) / h;
+	return (y - starty) / h;
 }
