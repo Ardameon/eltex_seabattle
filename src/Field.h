@@ -5,7 +5,8 @@
 #include "Config.h"
 
 struct Field {
-	struct Cell ***field;
+	struct Cell **field;
+	struct Ship *dummy_ship;
 	int width;
 	int height;
 };
