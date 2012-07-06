@@ -1,6 +1,4 @@
-
-#INCLUDE <ncurses.h>
-
+#include <ncurses.h>
 #include <stdlib.h>
 #include "Player.h"
 #include "Config.h"
