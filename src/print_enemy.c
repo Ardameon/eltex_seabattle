@@ -3,7 +3,7 @@
 
 static void clear_field(int height, int width);
 
-int print_enemy(const struct Field *f, struct Player *p)
+int print_enemy(struct Player *p)
 {
 	int i;
 	int j;
@@ -11,6 +11,7 @@ int print_enemy(const struct Field *f, struct Player *p)
 	const int starty = 1;
 	const int cw = CWIDTH - 1;
 	const int ch = CHEIGHT - 1;
+	const struct Field *f = (const struct Field *)p->field;
 
 	assert(f != NULL);
 	assert(f->width != 0);

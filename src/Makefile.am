@@ -27,7 +27,9 @@ seabattle_SOURCES = main.c \
 		    UI.h \
 		    input_name.c \
 		    print_winner.c \
-		    draw_frame.c
+		    draw_frame.c \
+		    print_fields.c
+
 seabattle_LDFLAGS = -lncurses
 
 AM_CFLAGS = -Wall -pedantic
