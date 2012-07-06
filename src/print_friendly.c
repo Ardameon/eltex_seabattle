@@ -19,7 +19,6 @@ int print_friendly(const struct Field *f)
 
 	print_field(startx, starty, f->width, f->height, cw, ch);
 	clear_field(f->height, f->width);
-	mvprintw(ch * f->height + starty + 1, startx, "Your field");
 
 	for (i = 0; i < f->height; i++) {
 		assert(f->field[i] != NULL);
@@ -36,7 +35,7 @@ int print_friendly(const struct Field *f)
 		}
 	}
 
-	mvprintw(ch * f->height + starty + 1, startx, "Enemy field");
+	mvprintw(ch * f->height + starty + 1, startx, "Your field");
 	return 0;
 }
 

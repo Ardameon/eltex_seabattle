@@ -16,8 +16,6 @@ int run_game(struct Player **players)
 	while (winner_index == -1) {
 		current_player = players[current_player_index];
 		current_player_field = current_player->field;
-		/*print_friendly(current_player_field);*/
-		/*print_enemy(current_player_field);*/
 		print_fields(players, current_player_index);
 		read_coords(&shot_x, &shot_y, current_player_field->height,
 			current_player_field->width);
@@ -31,9 +29,6 @@ int run_game(struct Player **players)
 			continue;
 		}
 
-		/*print_friendly(current_player_field);*/
-		/*print_enemy(current_player_field);*/
-		print_fields(players, current_player_index);
 	}
 
 	print_winner(players[winner_index]);
@@ -48,7 +43,7 @@ int print_fields(struct Player **players, int friendly_player_index)
 
 	err_code = print_friendly(players[friendly_player_index]->field);
 
-	if (err_code == SUCCESS)
+	if (err_code != SUCCESS)
 		return err_code;
 
 	for (i = 0; i < 2; ++i) {
