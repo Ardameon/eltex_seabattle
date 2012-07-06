@@ -26,7 +26,7 @@ int print_emplacing(const struct Field *f, struct Fitting_ship *ship)
 
 	while (c != KEY_F(1) && is_placed != 1) {
 		fitting_ship(f, ship);
-		clear_field(f->height, f->width);
+		/*clear_field(f->height, f->width);*/
 		print_enemy(f);
 		mvprintw((CHEIGHT - 1) * f->height + 2, 2, "Your field");
 		print_ship(ship);

@@ -1,7 +1,9 @@
 #include "UI.h"
+#include <stdlib.h>
 
 static char x_to_col(int x, int startx, int w);
 static int y_to_line(int y, int starty, int h);
+static void clear_field(int height, int width);
 
 int read_coords(int *retx, int *rety, const int height, const int width)
 {
@@ -14,6 +16,7 @@ int read_coords(int *retx, int *rety, const int height, const int width)
 	int x = startx; 		/* current coordinate x */
 	int y = starty; 		/* current coordinate y */
 	int c; 				/* reads from keyboard */
+	FILE *fp = fopen("sea.log", "w+");
 
 	mvprintw(LINES - 1, 1, "Press Enter to shoot; F1 to exit.\n");
 
@@ -37,6 +40,11 @@ int read_coords(int *retx, int *rety, const int height, const int width)
 		case '\n':
 			mvprintw(LINES - 3, 1, "You shoot to: %c%2d", 
 				 x_to_col(x, startx, cw), y_to_line(y, starty, ch));
+			*rety = (x - startx) / cw;
+			*retx = (y - starty) / ch;
+			fprintf(fp, "[read_coords] coordinates: %d %d\n", *retx,*rety);
+			fclose(fp);
+			return 0;
 			break;
 		default:
 			break;
@@ -44,9 +52,26 @@ int read_coords(int *retx, int *rety, const int height, const int width)
 		move(y, x);
 		refresh();
 	}
-	*retx = x - 'a';
-	*rety = y;
-	return 0;
+	endwin();
+	exit(EXIT_SUCCESS);
+}
+
+static void clear_field(int height, int width)
+{
+	int starty = 1;
+	int startx = 2;
+	int i, j;
+	int ch = CHEIGHT - 1;
+	int cw = CWIDTH - 1;
+
+	for (i = 0; i < height; i++) {
+		for (j = 0; j < width; j++) {
+			int y = i * ch + starty + 1;
+			int x = j * cw + startx + 2;
+			mvaddch(y, x, ' ');
+		}
+	}
+
 }
 
 static char x_to_col(int x, int startx, int w)

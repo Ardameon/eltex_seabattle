@@ -1,9 +1,11 @@
 #include "seabattle_utils.h"
 #include "Player.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 int shot(struct Player *Player, int x, int y)
 {
+
 	if ((Player->field->field[x][y].ship == NULL) &&
 	    (Player->field->field[x][y].is_attacked == 0)) {
 		Player->field->field[x][y].is_attacked = 1;

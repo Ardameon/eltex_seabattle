@@ -13,6 +13,7 @@
 #define FITSHIP 'S'
 #define UNFITSHUP 'X'
 #define PLACEDSHIP 'O'
+#define WASATTACKED '+'
 
 int print_field(int sx, int sy, int w, int h, int cw, int ch);
 int print_enemy(const struct Field *f);
