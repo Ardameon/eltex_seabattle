@@ -13,10 +13,8 @@ struct Config *config_construct(int field_width, int field_height,
 	config->field_height = field_height;
 	config->ships_count = ships_count;
 	config->max_ship_size = max_ships_size;
-	config->ships_number_per_rank =
-		generate_ships_number_per_rank(max_ships_size);
-
-	if (config->ships_number_per_rank == NULL)
+	
+	if (generate_ships_number_per_rank(config) != 0)
 		return NULL;
 
 	return config;
@@ -31,21 +29,21 @@ void config_destruct(struct Config *config)
 
 /*
  * Generate array contains number of ships each rank
- * Parameters:
- * 	max_ships_size - max rank of ship
- * Return value:
- * 	generated array
  */
-int *generate_ships_number_per_rank(int max_ships_size)
+int generate_ships_number_per_rank(struct Config *config)
 {
-	int *array;
-	int i;
-		
-	if ((array = malloc(max_ships_size * sizeof(*array))) == NULL)
-		return NULL;
+	int i, count_remain_ship = config->ships_count;
 
-	for (i = 0; i < max_ships_size; ++i)
-		array[i] = max_ships_size - i;
+	if ((config->ships_number_per_rank = 
+			malloc(config->max_ship_size * sizeof(int))) == NULL)
+		return -1;
 
-	return array;	
+	for (i = 0; (i < config->max_ship_size); ++i){
+		config->ships_number_per_rank[i] = (config->max_ship_size - i)
+		       	< count_remain_ship ? (config->max_ship_size - i): 
+				count_remain_ship;
+		count_remain_ship -= config->ships_number_per_rank[i]; 
+	}
+
+	return 0;
 }
