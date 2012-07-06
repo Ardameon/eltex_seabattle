@@ -7,7 +7,6 @@
 int emplace_ships(struct Field *map, struct Config *config_game){
 	struct Fitting_ship *fitt_ship = NULL;
 	int i, j;
-	srand(time(NULL));
 	for (i = config_game->max_ship_size - 1; i >= 0; i--)
 		for (j = 0; j < config_game->ships_number_per_rank[i]; j++){
 			fitt_ship = fitting_ship_construct(map, i + 1); 

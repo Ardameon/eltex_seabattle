@@ -1,4 +1,5 @@
 #include <ncurses.h>
+#include <time.h>
 #include <stdlib.h>
 #include "Player.h"
 #include "Config.h"
@@ -15,10 +16,11 @@ static void initialize_curses(void);
 
 int main(int argc, char *argv[])
 {
-	initialize_curses();
 	struct Player **players = NULL;
 	struct Config *config = NULL;
-
+	srand(time(NULL));
+	initialize_curses();
+	
 	players = malloc(sizeof(*players) * PLAYERS_COUNT);
 
 	config = config_construct(FIELD_WIDTH, FIELD_HEIGHT,
