@@ -3,7 +3,7 @@
 
 #include "Player.h"
 
-struct Player *player_construct(struct Field *field, const char *name,
+struct Player *player_construct(struct Config *config, const char *name,
 	int ships_count)
 {
 	struct Player *player;
@@ -11,9 +11,16 @@ struct Player *player_construct(struct Field *field, const char *name,
 	if ((player = malloc(sizeof(*player))) == NULL)
 		return NULL;
 
+	if ((player->field = field_construct(config)) == NULL) {
+		free(player);
+
+		return NULL;
+	}
+
 	player->name = calloc(strlen(name), sizeof(*(player->name)));
 	
 	if (player->name == NULL) {
+		free(player->field);
 		free(player);
 
 		return NULL;
