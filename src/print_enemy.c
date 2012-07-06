@@ -24,7 +24,7 @@ int print_enemy(const struct Field *f)
 				int x = startx + cw * j + 2;
 				int y = starty + ch * i + 1;
 
-				mvaddch(y, x, 'X');
+				mvaddch(y, x, PLACEDSHIP);
 			}
 		}
 	}

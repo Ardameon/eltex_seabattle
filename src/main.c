@@ -1,3 +1,4 @@
+
 #INCLUDE <ncurses.h>
 
 #include <stdlib.h>
@@ -40,5 +41,3 @@ static void initialize_curses(void)
 	keypad(stdscr, TRUE);
 	noecho();
 }
-
-sdfsdjksdj

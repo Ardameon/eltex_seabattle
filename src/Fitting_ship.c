@@ -24,7 +24,7 @@ int add_ship_on_field(struct Field *map, struct Fitting_ship *fitt_ship){
 	return 0;
 }
 
-int check_fitting_cell(struct Field *map, int left, int top){
+int check_fitting_cell(const struct Field *map, int left, int top){
 	if ((left >= 0) && (left < map->width) &&
 			(top >= 0) && (top < map->height)){
 		if (map->field[top][left].ship == NULL) 
@@ -36,7 +36,7 @@ int check_fitting_cell(struct Field *map, int left, int top){
 		return 1;
 }
 
-int check_fitting_cells(struct Field *map, int left, int top){
+int check_fitting_cells(const struct Field *map, int left, int top){
 	if (check_fitting_cell(map, left, top) == 0)
 		return 0;
 	if (check_fitting_cell(map, left - 1, top - 1) == 0)
@@ -67,11 +67,11 @@ int rotation(struct Field *map, struct Fitting_ship *fitt_ship){
 	return 0;
 }
 
-int fitting_ship(struct Field *map, struct Fitting_ship *fitt_ship){
+int fitting_ship(const struct Field *map, struct Fitting_ship *fitt_ship){
 	int i;
 	fitt_ship->check_fitting_permit = 1;
 	if (fitt_ship->orient == horizontal){
-		if (fitt_ship->left + fitt_ship->length < map->width){	
+		if (fitt_ship->left + fitt_ship->length <= map->width){	
 			for (i = fitt_ship->left; i < fitt_ship->left + 
 					fitt_ship->length; i++){
 				if (check_fitting_cells(map, i, fitt_ship->top) == 0)
@@ -82,7 +82,7 @@ int fitting_ship(struct Field *map, struct Fitting_ship *fitt_ship){
 			fitt_ship->check_fitting_permit = 0;
 	}
 	else
-		if (fitt_ship->top + fitt_ship->length < map->height){
+		if (fitt_ship->top + fitt_ship->length <= map->height){
 			for (i = fitt_ship->top; i < fitt_ship->top + 
 					fitt_ship->length; i++){
 				if (check_fitting_cells(map, fitt_ship->left, i) == 0)
