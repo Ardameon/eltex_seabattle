@@ -21,8 +21,7 @@ int run_game(struct Player **players)
 		read_coords(&shot_x, &shot_y, current_player_field->height,
 			current_player_field->width);
 		shot_val = shot(players[(current_player_index + 1) % 2],
-			shot_x, shot_y,
-			&destroyed_ship_left, &destroyed_ship_top);
+			shot_x, shot_y);
 		
 		if (shot_val == SHOT_MISSED) {
 			current_player_index = (current_player_index + 1) % 2;

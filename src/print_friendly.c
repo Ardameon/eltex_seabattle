@@ -3,14 +3,16 @@
 
 static void clear_field(int height, int width);
 
-int print_friendly(const struct Field *f, struct Player *p)
+int print_friendly(struct Player *p)
 {
+	const struct Field *f = (const struct Field *)p->field;
 	const int startx = f->width * CWIDTH + 10;
 	const int starty = 1;
 	const int cw = CWIDTH - 1;
 	const int ch = CHEIGHT - 1;
 	int i;
-	int j;
+	int j; 
+
 
 	assert(f != NULL);
 	assert(f->width != 0);
