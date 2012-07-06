@@ -1,5 +1,6 @@
 #include <ncurses.h>
 #include <stdlib.h>
+#include <time.h>
 #include "Field.h"
 #include "UI.h"
 
@@ -11,9 +12,10 @@ int main(int argc, char *argv[])
 	struct Field *f = get_field();
 	int x;
 	int y;
+	srand(time(NULL));
 	initialize_curses();
-	print_enemy((const struct Field *)f, 10, 10);
-	print_friendly((const struct Field *)f, 10, 10);
+	print_enemy((const struct Field *)f);
+	print_friendly((const struct Field *)f);
 	read_coords(&x, &y, 10, 10);
 
 	endwin();
@@ -22,8 +24,17 @@ int main(int argc, char *argv[])
 
 static struct Field *get_field(void)
 {
-	struct Field *f = (struct Field *)malloc(sizeof(struct Field));
-	return f;
+	struct Field *ptr = (struct Field *)malloc(sizeof(struct Field));
+	int i,j;
+	ptr->width = 10;
+	ptr->height = 10;
+	ptr->field = (struct Cell ***)malloc(ptr->height * sizeof(struct Cell **));
+	for (i = 0; i < ptr->height; i++){
+		ptr->field[i] = (struct Cell **)malloc(ptr->width * sizeof(struct Cell *)); 
+		for (j = 0; j < ptr->width; j++)
+			ptr->field[i][j] = (rand()/(double)RAND_MAX > 0.5) ? (void *)1 : NULL;
+	}
+	return ptr;
 }
 
 static void initialize_curses(void)
