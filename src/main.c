@@ -20,10 +20,10 @@ int main(int argc, char *argv[])
 	s2 = fitting_ship_construct(f, 3);
 	s2->orient = vertical;
 
-	print_enemy((const struct Field *)f);
-	print_friendly((const struct Field *)f);
 	print_emplacing((const struct Field *)f, s1);
 	print_emplacing((const struct Field *)f, s2);
+	print_enemy((const struct Field *)f);
+	print_friendly((const struct Field *)f);
 	read_coords(&x, &y, 10, 10);
 
 	endwin();
@@ -49,8 +49,8 @@ static struct Field *get_field(void)
 	for (i = 0; i < ptr->height; i++){
 		ptr->field[i] = (struct Cell **)malloc(ptr->width * sizeof(struct Cell *)); 
 		for (j = 0; j < ptr->width; j++)
-			ptr->field[i][j] = NULL;
-			/*ptr->field[i][j] = (rand()/(double)RAND_MAX > 0.5) ? (void *)1 : NULL;*/
+			/*ptr->field[i][j] = NULL;*/
+			ptr->field[i][j] = (rand()/(double)RAND_MAX > 0.5) ? (void *)1 : NULL;
 	}
 	return ptr;
 }
