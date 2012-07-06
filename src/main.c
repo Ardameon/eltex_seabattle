@@ -50,7 +50,7 @@ static struct Field *get_field(void)
 		ptr->field[i] = (struct Cell **)malloc(ptr->width * sizeof(struct Cell *)); 
 		for (j = 0; j < ptr->width; j++)
 			/*ptr->field[i][j] = NULL;*/
-			ptr->field[i][j] = (rand()/(double)RAND_MAX > 0.5) ? (void *)1 : NULL;
+			ptr->field[i][j] = (rand()/(double)RAND_MAX > 0.8) ? (void *)1 : NULL;
 	}
 	return ptr;
 }

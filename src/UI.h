@@ -10,6 +10,10 @@
 #define CWIDTH  5
 #define CHEIGHT 3
 
+#define FITSHIP 'S'
+#define UNFITSHUP 'X'
+#define PLACEDSHIP 'O'
+
 int print_field(int sx, int sy, int w, int h, int cw, int ch);
 int print_enemy(const struct Field *f);
 int print_friendly(const struct Field *f);
