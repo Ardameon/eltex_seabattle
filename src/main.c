@@ -1,33 +1,32 @@
 #include <ncurses.h>
-#include "UI.h"
-
-/* block to delete */
-#include <time.h>
-#include "Field.h"
 #include <stdlib.h>
-/* --- */
+#include "Player.h"
+#include "Config.h"
+#include "seabattle_utils.h"
+
+#define FIELD_WIDTH 10
+#define FIELD_HEIGHT 10
+#define SHIPS_COUNT 10
+#define MAX_SHIP_SIZE 4
+
+#define PLAYERS_COUNT 2 
 
 static void initialize_curses(void);
 
-/* to delete */
-static struct Field *get_field(void);
-/* --- */
-
 int main(int argc, char *argv[])
 {
-	/* to delete */
-	struct Field *f = get_field();
-	/* --- */
-
-	int x;
-	int y;
 	initialize_curses();
+	struct Player **players = NULL;
+	struct Config *config = NULL;
 
-	/* --- block to delete --- */
-	print_enemy((const struct Field *)f);
-	print_friendly((const struct Field *)f);
-	read_coords(&x, &y, 10, 10);
-	/* --- */
+	players = malloc(sizeof(*players) * PLAYERS_COUNT);
+	
+	config = config_construct(FIELD_WIDTH, FIELD_HEIGHT,
+				  SHIPS_COUNT, MAX_SHIP_SIZE);
+	
+	create_players(players, PLAYERS_COUNT, config);
+
+	run_game(players);
 
 	endwin();
 	return 0;
@@ -41,20 +40,3 @@ static void initialize_curses(void)
 	noecho();
 }
 
-/* to delete */
-static struct Field *get_field(void)
-{
-	struct Field *ptr = (struct Field *)malloc(sizeof(struct Field));
-	int i,j;
-	srand(time(NULL));
-	ptr->width = 10;
-	ptr->height = 10;
-	ptr->field = malloc(ptr->height * sizeof(struct Cell **));
-	for (i = 0; i < ptr->height; i++){
-		ptr->field[i] = (struct Cell **)malloc(ptr->width * sizeof(struct Cell *)); 
-		for (j = 0; j < ptr->width; j++)
-			ptr->field[i][j] = (rand()/(double)RAND_MAX > 0.5) ? (void *)1 : NULL;
-	}
-	return ptr;
-}
-/* --- */
