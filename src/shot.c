@@ -3,33 +3,20 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int shot(struct Player *Player, int x, int y)
+int shot(struct Player *player, int x, int y)
 {
+	struct Cell *cell = &(player->field->field[x][y]);
 
-	if ((Player->field->field[x][y].ship == NULL) &&
-	    (Player->field->field[x][y].is_attacked == 0)) {
-		Player->field->field[x][y].is_attacked = 1;
-		return 0;
-	}
-
-	if ((Player->field->field[x][y].ship == NULL) &&
-	    (Player->field->field[x][y].is_attacked == 1)) {	
+	if (cell->is_attacked == 1) 
 		return -1;
-	}
 
-	if ((Player->field->field[x][y].ship != NULL) && 
-	    (Player->field->field[x][y].is_attacked == 0)) {
-		Player->field->field[x][y].ship->health--;
-
-		if (Player->field->field[x][y].ship->health == 0)
-			Player->ships_count--;
-
+	if (cell->ship != NULL) {
+		cell->ship->health--;
+		cell->is_attacked = 1;
 		return 1;
-	}
-
-	if ((Player->field->field[x][y].ship != NULL) &&
-	    (Player->field->field[x][y].is_attacked == 1)) {
-		return -1;
+	} else {
+		cell->is_attacked = 1;
+		return 0;
 	}
 
 	return 0;
