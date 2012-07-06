@@ -9,7 +9,7 @@ struct Player {
 	int ships_count;
 };
 
-struct Player *player_construct(struct Field *field, const char *name,
+struct Player *player_construct(struct Config *config, const char *name,
 	int ships_count);
 void player_destruct(struct Player *player);
 
