@@ -3,7 +3,7 @@
 
 static void clear_field(int height, int width);
 
-int print_enemy(const struct Field *f)
+int print_enemy(const struct Field *f, struct Player *p)
 {
 	int i;
 	int j;
@@ -31,12 +31,14 @@ int print_enemy(const struct Field *f)
 				mvaddch(y, x, WASATTACKED);
 			}
 			if (f->field[i][j].ship == f->dummy_ship) {
+				mvaddch(y, x - 1, 'd');
 				mvaddch(y, x, 'n');
+				mvaddch(y, x + 1, 'o');
 			}
 		}
 	}
 
-	mvprintw(ch * f->height + starty + 1, startx, "Enemy field");
+	mvprintw(ch * f->height + starty + 1, startx, "%s field", p->name);
 	return 0;
 }
 
