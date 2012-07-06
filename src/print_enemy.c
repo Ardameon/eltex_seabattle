@@ -1,36 +1,34 @@
+#include <assert.h>
 #include "UI.h"
 
-static void place_shots(void);
-
-int print_enemy(const struct Field *f, const int width, const int height)
+int print_enemy(const struct Field *f)
 {
 	int i;
 	int j;
-	int ch = CHEIGHT;
-	int cw = CWIDTH;
-	WINDOW *cells[width][height];
-	curs_set(0);
+	const int startx = 2;
+	const int starty = 1;
+	const int cw = CWIDTH - 1;
+	const int ch = CHEIGHT - 1;
 
-	for (i = 0; i < height; i++) {
-		for (j = 0; j < width; j++) {
-			cells[i][j] = cwin(ch, cw, i * (ch - 1), j * (cw - 1));
+	assert(f != NULL);
+	assert(f->width != 0);
+	assert(f->height != 0);
+	assert(f->field != NULL);
+	
+	print_field(startx, starty, f->width, f->height, cw, ch);
+
+	for (i = 0; i < f->height; i++) {
+		assert(f->field[i] != NULL);
+		for (j = 0; j < f->width; j++) {
+			if (f->field[i][j] != NULL) {
+				int x = startx + cw * j + 2;
+				int y = starty + ch * i + 1;
+
+				mvaddch(y, x, 'X');
+			}
 		}
 	}
-	for (i = 1; i < height; i++) {
-		for (j = 1; j < width; j++) {
-			mvaddch((ch - 1)* i, (cw - 1)* j, ACS_PLUS);
-		}
-	}
-	place_shots();
-	mvprintw((ch - 1) * (i + 1), 1, "Enemy field");
-	getch();
-	curs_set(1);
+
+	mvprintw(ch * f->height + starty + 1, startx, "Enemy field");
 	return 0;
-}
-
-static void place_shots(void)
-{
-	mvaddch(1, 2, '1');
-	mvaddch(7, CHEIGHT * 3 + 1, '1');
-	refresh();
 }

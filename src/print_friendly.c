@@ -1,27 +1,19 @@
 #include "UI.h"
+#include <assert.h>
 
-int print_friendly(const struct Field *f, const int width, const int height)
+int print_friendly(const struct Field *f)
 {
-	int i;
-	int j;
-	int offset = width * CWIDTH + 10;
-	int ch = CHEIGHT;
-	int cw = CWIDTH;
-	WINDOW *cells[width][height];
-	curs_set(0);
+	const int startx = f->width * CWIDTH + 10;
+	const int starty = 1;
+	const int cw = CWIDTH - 1;
+	const int ch = CHEIGHT - 1;
 
-	for (i = 0; i < height; i++) {
-		for (j = 0; j < width; j++) {
-			cells[i][j] = cwin(ch, cw, i * (ch - 1), j * (cw - 1) + offset);
-		}
-	}
-	for (i = 1; i < height; i++) {
-		for (j = 1; j < width; j++) {
-			mvaddch((ch - 1)* i, (cw - 1)* j + offset, ACS_PLUS);
-		}
-	}
-	mvprintw((ch - 1) * (i + 1), offset, "Your field");
-	getch();
-	curs_set(1);
+	assert(f != NULL);
+	assert(f->width != 0);
+	assert(f->height != 0);
+	assert(f->field != NULL);
+
+	print_field(startx, starty, f->width, f->height, cw, ch);
+	mvprintw(ch * f->height + starty + 1, startx, "Your field");
 	return 0;
 }
