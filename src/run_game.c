@@ -22,9 +22,9 @@ int run_game(struct Player **players)
 		shot_val = shot(players[(current_player_index + 1) % 2],
 			shot_x, shot_y);
 		
-		if (shot_val == SHOOT_MISSED) {
+		if (shot_val == SHOT_MISSED) {
 			current_player_index = (current_player_index + 1) % 2;
-		} else if (shot_val == SHOOT_SHIP_DESTROYED) {
+		} else if (shot_val == SHOT_SHIP_DESTROYED) {
 			winner_index = check_winner(players);
 			draw_frame(current_player->field, shot_x, shot_y);
 		}
