@@ -14,29 +14,22 @@
  * error code. Error codes is(will be) defined at 'error_codes.h'
  * */
 
-int create_player(struct Player *player, struct Config *config)
+int create_player(struct Player **player, struct Config *config)
 {
-	struct Field* field;
 	char* name;
-	name = (char*) malloc(sizeof(char) * 128);
-	if(!fgets(name, 128, stdin)) {
+	
+	name = malloc(sizeof(*name) * 128);
+	
+	if (!fgets(name, 128, stdin)) {
 		free(name);
 		return -1;
 	}
 
-	if((field = field_construct(config->field_width,
-						config->field_height) == NULL) {
-	/*if field_construct() returns an error*/
-		free(name);
-		return -2;
-	}
-
-	if((player_construct(field, "unnamed", config->ships_count) == NULL) {
+	if ((*player = player_construct(config, "unnamed",
+		config->ships_count)) == NULL) {
 	/*if player_construct() returns an error*/
-		ree(name);
-		field_destruct(field);
+		free(name);
 		return -3;
-
 	}
 
 	return 0;
