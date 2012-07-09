@@ -19,20 +19,26 @@ int shot(struct Player *player, int x, int y,
 		cell->ship->health--;
 		potential_dead_ship = cell->ship;
 		cell->ship = player->field->dummy_ship;
-
+		cell->is_attacked = 1;
+		
 		if (potential_dead_ship->health == 0) {
 			player->ships_count--;
-
-			(*destroyed_ship_top) = potential_dead_ship->top;
-			(*destroyed_ship_left) = potential_dead_ship->left;
-			(*orient) = potential_dead_ship->orient;
+	
+			if (destroyed_ship_top != NULL) {
+				*destroyed_ship_top = potential_dead_ship->top;
+			}
+			if (destroyed_ship_left != NULL) {
+				*destroyed_ship_left =
+					potential_dead_ship->left;
+			}
+			if (orient != NULL) {
+				*orient = potential_dead_ship->orient;
+			}
 			
 			ship_destruct(potential_dead_ship);
-			
+
 			return SHOT_SHIP_DESTROYED;
 		}
-
-		cell->is_attacked = 1;
 
 		return SHOT_HEAT;
 	} else {

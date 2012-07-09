@@ -16,6 +16,7 @@ static void initialize_curses(void);
 
 int main(int argc, char *argv[])
 {
+	int i;
 	struct Player **players = NULL;
 	struct Config *config = NULL;
 	srand(time(NULL));
@@ -29,6 +30,9 @@ int main(int argc, char *argv[])
 	create_players(players, PLAYERS_COUNT, config);
 
 	run_game(players);
+
+	for (i = 0; i < PLAYERS_COUNT; ++i) 
+		player_destruct(players[i]);	
 
 	endwin();
 	return 0;
