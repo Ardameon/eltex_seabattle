@@ -32,9 +32,7 @@ int print_enemy(struct Player *p)
 				mvaddch(y, x, WASATTACKED);
 			}
 			if (f->field[i][j].ship == f->dummy_ship) {
-				mvaddch(y, x - 1, 'd');
-				mvaddch(y, x, 'n');
-				mvaddch(y, x + 1, 'o');
+				mvaddch(y, x, 'X');
 			}
 		}
 	}
