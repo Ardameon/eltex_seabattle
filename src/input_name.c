@@ -17,7 +17,7 @@ char *input_name(void)
 	wmove(win, 1, 1);
 	noraw();
 	echo();
-	wscanw(win, "%[a-zA-z]", name);
+	wscanw(win, "%[a-zA-z_0-9]", name);
 	raw();
 	noecho();
 
