@@ -31,7 +31,7 @@ int run_game(struct Player **players)
 			current_player_index = (current_player_index + 1) % 2;
 		} else if (shot_val == SHOT_SHIP_DESTROYED) {
 			winner_index = check_winner(players);
-			draw_frame(current_player,
+			draw_frame(players[(current_player_index + 1) % 2],
 				destroyed_ship_left, destroyed_ship_top,
 				orient);
 

@@ -15,11 +15,12 @@ int shot(struct Player *player, int x, int y,
 	if (cell->is_attacked == 1) 
 		return SHOT_ALREADY_ATTACKED;
 
+	cell->is_attacked = 1;
+
 	if (cell->ship != NULL) {
 		cell->ship->health--;
 		potential_dead_ship = cell->ship;
 		cell->ship = player->field->dummy_ship;
-		cell->is_attacked = 1;
 		
 		if (potential_dead_ship->health == 0) {
 			player->ships_count--;
@@ -42,8 +43,6 @@ int shot(struct Player *player, int x, int y,
 
 		return SHOT_HEAT;
 	} else {
-		cell->is_attacked = 1;
-		
 		return SHOT_MISSED;
 	}
 

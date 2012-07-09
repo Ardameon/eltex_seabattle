@@ -15,8 +15,8 @@ int draw_frame(struct Player *player,
 	else
 		y_inc = 1;
 	
-	while (field->field[x][y].ship == field->dummy_ship) {
-		draw_frame_around_cell(player, x, y);
+	while (field->field[y][x].ship == field->dummy_ship) {
+		draw_frame_around_cell(player, y, x);
 		
 		x += x_inc;
 		y += y_inc;
