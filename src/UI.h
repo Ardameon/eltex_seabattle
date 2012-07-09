@@ -22,6 +22,5 @@ int read_coords(int *x, int *y, const int height, const int width);
 int print_emplacing(const struct Field *f, struct Fitting_ship *ship);
 int print_winner(struct Player *winner);
 char *input_name(void);
-int draw_frame(struct Field *field, int x, int y);
 
 #endif

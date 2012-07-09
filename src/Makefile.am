@@ -28,6 +28,7 @@ seabattle_SOURCES = main.c \
 		    input_name.c \
 		    print_winner.c \
 		    draw_frame.c \
+		    draw_frame_around_cell.c \
 		    print_fields.c
 
 seabattle_LDFLAGS = -lncurses

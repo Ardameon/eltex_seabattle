@@ -22,5 +22,8 @@ int check_winner(struct Player **player);
 int finalize_field(struct Player *player);
 int run_game(struct Player **players);
 int print_fields(struct Player **players, int friendly_player_index);
+int draw_frame(struct Player *player,
+	int left, int top, enum orientation orient);
+int draw_frame_around_cell(struct Player *player, int x, int y);
 
 #endif
