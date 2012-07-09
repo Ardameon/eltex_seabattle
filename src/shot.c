@@ -5,10 +5,10 @@
 #include <stdio.h>
 
 int shot(struct Player *player, int x, int y,
-	 int *destroyed_ship_left,
+	 int *destroyed_ship_left, 
 	 int *destroyed_ship_top,
-	 enum orientation *orient)
-{
+	 enum orientation *orient) {
+
 	struct Cell *cell = &(player->field->field[x][y]);
 	struct Ship *potential_dead_ship;
 
