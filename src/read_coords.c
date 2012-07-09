@@ -13,8 +13,8 @@ int read_coords(int *retx, int *rety, const int height, const int width)
 	int starty = 2; 		/* column start y */
 	int endx = cw * width; 		/* line end x */
 	int endy = ch * height; 	/* column end y */
-	int x = startx; 		/* current coordinate x */
-	int y = starty; 		/* current coordinate y */
+	static int x = 4; 		/* current coordinate x */
+	static int y = 2; 		/* current coordinate y */
 	int c; 				/* reads from keyboard */
 
 	mvprintw(LINES - 1, 1, "Press Enter to shoot; F1 to exit.\n");
