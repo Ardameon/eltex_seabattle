@@ -37,7 +37,8 @@ int print_enemy(struct Player *p)
 		}
 	}
 
-	mvprintw(ch * f->height + starty + 1, startx, "%s field", p->name);
+	mvprintw(ch * f->height + starty + 1,
+			startx, "%s field (%2d ships)", p->name, p->ships_count);
 	return 0;
 }
 

@@ -34,10 +34,14 @@ int print_friendly(struct Player *p)
 			if (f->field[i][j].is_attacked == 1) {
 				mvaddch(y, x, WASATTACKED);
 			}
+			if (f->field[i][j].ship == f->dummy_ship) {
+				mvaddch(y, x, 'X');
+			}
 		}
 	}
 
-	mvprintw(ch * f->height + starty + 1, startx, "%s field", p->name);
+	mvprintw(ch * f->height + starty + 1,
+			startx, "%s field (%2d ships)", p->name, p->ships_count);
 	return 0;
 }
 
