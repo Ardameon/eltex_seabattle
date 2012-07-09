@@ -6,11 +6,8 @@ src/.deps
 src/seabattle
 aclocal.m4
 autom4te.cache
-compile
 config.log
 config.status
-depcomp
-missing
 *~
 *.swp
 *.out
