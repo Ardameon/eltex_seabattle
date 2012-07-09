@@ -34,6 +34,9 @@ int main(int argc, char *argv[])
 	for (i = 0; i < PLAYERS_COUNT; ++i) 
 		player_destruct(players[i]);	
 
+	config_destruct(config);
+	free(players);
+
 	endwin();
 	return 0;
 }

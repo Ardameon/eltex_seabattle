@@ -20,7 +20,7 @@ struct Player *player_construct(struct Config *config, const char *name,
 		return NULL;
 	}
 
-	player->name = calloc(strlen(name), sizeof(*(player->name)));
+	player->name = calloc(strlen(name) + 1, sizeof(*(player->name)));
 	
 	if (player->name == NULL) {
 		free(player->field);

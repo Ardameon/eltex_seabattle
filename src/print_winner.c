@@ -21,9 +21,7 @@ int print_winner(struct Player *winner)
                 drawScreen(field, row, col, winner->name);
                 sleep(1);
         }
-	
-/*	drawScreen(field, row, col, winner->name);
-	updateFlakes(&field, &row, &col);*/
+	free(field);
 }
 void updateFlakes(char **fieldIn, int *rowIn, int *colIn)
  {
@@ -32,12 +30,9 @@ void updateFlakes(char **fieldIn, int *rowIn, int *colIn)
          getmaxyx(stdscr, row, col);
  
          if (field == NULL || *rowIn!=row || *colIn!=col){
-                 if(field!=NULL){
-                         free(field);
-                 }
-                 *fieldIn = malloc(row*col);
+		 free(field);
+                 *fieldIn = calloc(row*col, sizeof(char));
                  field=*fieldIn;
-                 memset(field, 0, row*col);
                  *rowIn = row;
                  *colIn = col;
          }

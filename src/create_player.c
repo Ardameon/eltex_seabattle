@@ -26,16 +26,17 @@ int create_player(struct Player **player, struct Config *config)
 
 	if ((*player = player_construct(config, name,
 		config->ships_count)) == NULL) {
-	/*if player_construct() returns an error*/
 		free(name);
 		return ERR_PLAYER_CONSTRUCT;
 	}
+	
+	free(name);
 
 	if (emplace_ships((*player)->field, config)) {
 		player_destruct(*player);
 		return ERR_EMPLACE;
 	}
-
+	
 	return 0;
 }
 

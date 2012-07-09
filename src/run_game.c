@@ -37,7 +37,8 @@ int run_game(struct Player **players)
 
 		}
 	}
-
+	
+	finalize_field(players[winner_index]);
 	print_winner(players[winner_index]);
 
 	return SUCCESS;
