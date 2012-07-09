@@ -4,10 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int shot(struct Player *player, int x, int y,
-	 int *destroyed_ship_left,
-	 int *destroyed_ship_top,
-	 enum orientation *orient)
+int shot(struct Player *player, int x, int y)
 {
 	struct Cell *cell = &(player->field->field[x][y]);
 	struct Ship *potential_dead_ship;
@@ -23,9 +20,9 @@ int shot(struct Player *player, int x, int y,
 		if (potential_dead_ship->health == 0) {
 			player->ships_count--;
 
-			(*destroyed_ship_top) = potential_dead_ship->top;
-			(*destroyed_ship_left) = potential_dead_ship->left;
-			(*orient) = potential_dead_ship->orient;
+			/*(*destroyed_ship_top) = potential_dead_ship->top;*/
+			/*(*destroyed_ship_left) = potential_dead_ship->left;*/
+			/*(*orient) = potential_dead_ship->orient;*/
 			
 			ship_destruct(potential_dead_ship);
 			
